@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Pack</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="text/javascript" src="js/character.js" defer></script>
+</head>
+<body onload="showRace('human_m')">
+    <h1>Character Pack</h1>
+    <div class="radio-group">
+        <div class="radio-item">
+            <input type="radio" id="human_m" name="race" value="human_m" checked>
+            <label for="human_m">Human (male)</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" id="human_f" name="race" value="human_f" >
+            <label for="human_f">Human (female)</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" id="dwarf_m" name="race" value="dwarf_m" >
+            <label for="dwarf_m">Dwarf (male)</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" id="dwarf_f" name="race" value="dwarf_f" >
+            <label for="dwarf_f">Dwarf (female)</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" id="high_elf_m" name="race" value="high_elf_m" >
+            <label for="high_elf_m">High Elf (male)</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" id="high_elf_f" name="race" value="high_elf_f" >
+            <label for="high_elf_f">High Elf (female)</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" id="wood_elf_m" name="race" value="wood_elf_m" >
+            <label for="wood_elf_m">Wood Elf (male)</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" id="wood_elf_f" name="race" value="wood_elf_f" >
+            <label for="wood_elf_f">Wood Elf (female)</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" id="halfling_m" name="race" value="halfling_m" >
+            <label for="halfling_m">Halfling (male)</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" id="halfling_f" name="race" value="halfling_f" >
+            <label for="halfling_f">Halfling (female)</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" id="gnome_m" name="race" value="gnome_m" >
+            <label for="gnome_m">Gnome (male)</label>
+        </div>
+        <div class="radio-item">
+            <input type="radio" id="gnome_f" name="race" value="gnome_f" >
+            <label for="gnome_f">Gnome (female)</label>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-roll table-XL" onclick="rollNPC()">Random NPC (current race)</button>
+        <!-- RESULT -->
+        <table class="table table-font table-XL table-col1">
+            <thead>
+                <tr>
+                    <th><button class="btn btn-roll " onclick="rollRace(true)">Race (gender)</button></th>
+                    <th id="current_race"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><button class="btn btn-roll " onclick="rollBuild(true)">Build</button></td>
+                    <td id="result_build"></td>
+                 </tr>
+                <tr>
+                   <td><button class="btn btn-roll " onclick="rollSize(true)">Height</button></td>
+                   <td id="result_height"></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-roll " onclick="rollWeight(true)">Weight</button></td>
+                    <td id="result_weight"></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-roll " onclick="rollHandedness(true)">Handedness</button></td>
+                    <td id="result_handedness"></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-roll " onclick="rollEyes(true)">Eye color</button></td>
+                    <td id="result_eye"></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-roll " onclick="rollHair(true)">Hair color</button></td>
+                    <td id="result_hair"></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-roll " onclick="rollFeatures(true)">Features</button></td>
+                    <td id="result_features"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button onclick="toggle_visibility('size')" class="btn btn-secondary">HEIGHT</button>
+    <div id="size" class="invisible">
+        <!-- HEIGHT -->
+        <table class="table table-font table-XL table-col1">
+            <tbody>
+                <tr>
+                    <td>Height Roll</td>
+                    <td id="size_roll"></td>
+                </tr>
+                <tr>
+                    <td>Height Range</td>
+                    <td id="size_range"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn btn-roll" onclick="rollSize(true)">Roll Height</button>
+                    </td>
+                    <td id="size_result"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+    <button onclick="toggle_visibility('build')" class="btn btn-secondary">BUILD</button>
+    <div id="build" class="invisible">
+        <!-- BUILD -->
+        <table id="table_racial_build" class="table table-font table-XL table-col1">
+            <thead>
+                <tr>
+                    <th><button class="btn btn-roll" onclick="rollBuild(true)">Roll Build</button></th>
+                    <th colspan="2">Build</th>
+                </tr>
+                <tr>
+                    <td>1d100</td>
+                    <td>Build</td>
+                    <td>Effects</td>
+                </tr>
+            </thead>
+            <tbody>
+    
+            </tbody>
+        </table>
+        <!-- BUILD result -->
+        <table class="table table-XL table-font table-col1">
+            <tr>
+                <td id="build_result"></td>
+                <td id="build_effect"></td>
+            </tr>
+        </table>
+        <!-- all BUILDS -->
+        <button onclick="toggle_visibility('all_build')" class="btn btn-secondary">Build details</button>
+        <div id="all_build" class="invisible">
+            <table id="table_build" class="table table-font table-XL">
+                <thead>
+                    <tr>
+                        <th colspan="7">Build</th>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>S</td>
+                        <td>T</td>
+                        <td>Ag</td>
+                        <td>M</td>
+                        <td>Weight</td>
+                        <td>Weight roll</td>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                </tbody>
+            </table>     
+        </div>           
+    </div>
+    <button onclick="toggle_visibility('weight')" class="btn btn-secondary">WEIGHT</button>
+    <div id="weight" class="invisible">
+        <!-- WEIGHT -->
+        <table class="table table-XL table-font table-col1">
+            <tr>
+                <td>Weight Range</td>
+                <td id="weight_range"></td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-roll" onclick="rollWeight(true)">Roll Weight</button>
+                </td>
+                <td id="weight_result"></td>
+            </tr>
+        </table>
+    </div>
+    <button onclick="toggle_visibility('handedness')" class="btn btn-secondary">HANDEDNESS</button>
+    <div id="handedness" class="invisible">
+        <!-- HANDEDNESS -->
+        <table id="table_handedness" class="table table-font table-XL table-col1">
+            <thead>
+                <tr>
+                    <th><button class="btn btn-roll" onclick="rollHandedness(true)">Roll Handedness</button></th>
+                    <th>Handedness</th>
+                </tr>
+                <tr>
+                    <td>1d100</td>
+                    <td>Effects</td>
+                </tr>
+            </thead>
+            <tbody>
+    
+            </tbody>
+        </table>        
+    </div>
+    <button onclick="toggle_visibility('feature')" class="btn btn-secondary">DISTINGUISHING FEATURES</button>
+    <div id="feature" class="invisible">
+        <!-- FEATURES -->
+        <button onclick="toggle_visibility('number_feature')" class="btn btn-secondary">Number of features for current race</button>
+        <div id="number_feature" class="invisible">
+            <table id="table_number_feature" class="table table-font table-XL table-col1">
+                <thead>
+                    <tr>
+                        <th>1d100</th>
+                        <th>Number of Features</th>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                </tbody>
+            </table>
+        </div>
+        <table id="table_feature" class="table table-font table-XL table-col1">
+            <thead>
+                <tr>
+                    <th><button class="btn btn-roll" onclick="rollFeatures(true)">Roll feature</button></th>
+                    <th colspan="2">Feature</th>
+                </tr>
+                <tr>
+                    <td>1d100</td>
+                    <td>Name</td>
+                    <td>Effects</td>
+                </tr>
+            </thead>
+            <tbody>
+    
+            </tbody>
+        </table>
+    </div>
+    <button onclick="toggle_visibility('eye_color')" class="btn btn-secondary">EYE COLOR</button>
+    <div id="eye_color" class="invisible">
+        <!-- EYES -->
+        <table id="table_eyes" class="table table-font table-XL table-col1">
+            <thead>
+                <tr>
+                    <th><button class="btn btn-roll" onclick="rollEyes(true)">Roll Eye color</button></th>
+                    <th>Eyes</th>
+                </tr>
+                <tr>
+                    <td>1d100</td>
+                    <td>Color</td>
+                </tr>
+            </thead>
+            <tbody>
+    
+            </tbody>
+        </table>
+    </div>
+    <button onclick="toggle_visibility('hair_color')" class="btn btn-secondary">HAIR COLOR</button>
+    <div id="hair_color" class="invisible">
+        <!-- HAIR -->
+        <table id="table_hair" class="table table-font table-XL table-col1">
+            <thead>
+                <tr>
+                    <th><button class="btn btn-roll" onclick="rollHair(true)">Roll Hair color</button></th>
+                    <th>Hair</th>
+                </tr>
+                <tr>
+                    <td>1d100</td>
+                    <td>Color</td>
+                </tr>
+            </thead>
+            <tbody>
+    
+            </tbody>
+        </table>
+    </div> 
+</body>
+</html>
